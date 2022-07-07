@@ -85,6 +85,11 @@
     background-color: #2a3d51;
     height: 55px;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
 }
 
 .logo h2 {
@@ -98,6 +103,7 @@
 
 .menu {
     float: right;
+    
 }
 
 .menu-list {
@@ -127,7 +133,9 @@
 
 .main {
     text-align: center;
-    padding: 100px 0;
+    margin: 55px 0;
+    position: relative;
+    height: 100%;
 }
 
 .title h2 {
@@ -169,12 +177,24 @@
     border-radius: 50px;
 }
 
+.icon {
+    display: flex;
+    justify-content: center;
+}
+
 .icon-star {
     font-size: 20px;
     position: relative;
 }
 
-.icon-star::before {
+.line-icon {
+    height: 3px;
+    width: 120px;
+    background: #19232f;
+    margin: 10px 5px;
+}
+
+/* .icon-star::before {
     position: absolute;
     content: "";
     top: 10px;
@@ -188,11 +208,11 @@
     position: absolute;
     content: "";
     top: 10px;
-    left: 860px;
+    left: 880px;
     height: 3px;
     width: 120px;
     background: #19232f;
-}
+} */
 
 .menu-item {
     position: relative;
@@ -224,4 +244,69 @@
     text-decoration: none;
     font-size: 20px;
     color: #19232f;
+}
+
+.connect {
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+}
+
+.connect-list {
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.connect-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+}
+
+.connect-button:hover {
+    opacity: 0.7;
+}
+
+.connect-setup {
+    background-color: #19232f;
+}
+
+.connect-messager {
+    background-color: rgb(46, 112, 219);
+    font-size: 28px;
+}
+
+.connect-bell {
+    background-color: #d91212;
+    position: relative;
+}
+
+.connect-bell::before {
+    content: "";
+    width: 33px;
+    height: 33px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.main-img {
+    width: 100%;
+}
+
+.slide {
+    width: 100%;
+}
+
+.main-content {
+    padding: 20px 0;
 }
