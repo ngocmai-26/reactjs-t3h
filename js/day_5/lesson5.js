@@ -142,16 +142,30 @@ var findById = function (id) {
 
 //Tìm kiếm
 
-var searchStudent = function () {
-  var keyword = document.getElementById('txtSearch').value.toLowerCase().trim()
+// var searchStudent = function () {
+//   var keyword = document.getElementById('txtSearch').value.toLowerCase().trim()
+//   var results = []
+//   for (var i = 0; i < list_student.length; i++) {
+//     var studentName = list_student[i].name.toLowerCase()
+//     if (list_student[i].id === keyword || studentName.includes(keyword)) {
+//       results.push(list_student[i])
+//     }
+//   }
+
+//   renderStudent(results)
+// }
+
+//tìm kiếm bằng indexOf
+var searchName = function() {
   var results = []
+  var keyword = document.getElementById('txtSearch').value.toLowerCase().trim()
   for (var i = 0; i < list_student.length; i++) {
     var studentName = list_student[i].name.toLowerCase()
-    if (list_student[i].id === keyword || studentName.includes(keyword)) {
+    var a = studentName.indexOf(keyword)
+    if (a !== -1) {
       results.push(list_student[i])
     }
   }
-
   renderStudent(results)
 }
 
