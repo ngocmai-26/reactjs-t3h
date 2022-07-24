@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,28 +8,95 @@
     <title>Document</title>
     <link rel="stylesheet" href="/day3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </head>
 <style>
+    .formQLSV {
+        position: relative;
+    }
+
     .table-title {
         font-size: 22px;
     }
+
     .demo-item {
         font-size: 18px
     }
+
     .form-group {
         margin: 10px 0;
     }
+
     .form-broup-button {
         margin: 20px 0;
         display: flex;
         justify-content: end;
     }
-    .form-broup-button  button{
+
+    .form-broup-button button {
         margin-left: 15px;
     }
+
+    .statistic-item {
+        list-style: none;
+        position: relative;
+        width: 170px;
+        margin-right: 15px;
+        background-color: rgb(246, 246, 173);
+
+    }
+
+    .statistic-item:focus {
+        outline: 0;
+    }
+
+    .btn-main {
+        width: 100%;
+        text-align: center;
+    }
+
+    .statistic_list-none {
+        display: none;
+        padding: 0;
+        background-color: antiquewhite;
+
+    }
+
+    .statistic_list-none .item-click {
+        background-color: antiquewhite;
+    }
+
+    .item-click {
+        margin-right: 0px;
+    }
+
+    .statistic_list-none .item-click:hover {
+        background-color: bisque;
+        width: 100%;
+    }
+
+    .statistic-item:hover .statistic_list-none {
+        display: block;
+        position: absolute;
+    }
+
+    .list-total {
+        display: flex;
+    }
+
+    .demo {
+        height: 450px;
+    }
+
+    .item-click {
+        text-align: left;
+    }
 </style>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -72,50 +140,185 @@
                             <span id="spanHoa" class="text-danger"></span>
                         </div>
                     </div>
-  
+
                     <div class="form-group text-center form-broup-button">
                         <div id="btnCreate">
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-success" onclick="createStudent()">
                                 Thêm Sinh Viên
                             </button>
-        
+
                             <button type="reset" id="btnReset" class="btn btn-dark">
                                 Reset
                             </button>
                         </div>
                         <button id="btnUpdate" type="button" class="btn btn-info">
-                        Lưu thay đổi
+                            Lưu thay đổi
                         </button>
+
                     </div>
                 </form>
                 <div class="row">
-                <div class="col-9 form-group">
-                    <input placeholder="Nhập tên hoặc mã sinh viên" type="text" class="form-control" id="txtSearch"/>
+                    <div class="col-9 form-group">
+                        <!-- <input oninput="searchStudent" placeholder="Nhập tên hoặc mã sinh viên" type="text"
+                            class="form-control" id="txtSearch" /> -->
+                        <input oninput="" placeholder="Nhập tên hoặc mã sinh viên" type="text"
+                            class="form-control" id="txtSearch" />
+                    </div>
+                    <div class="col-3 form-group">
+                        <button id="btnSearch" class="btn btn-primary" onclick="searchName()">Search</button>
+                    </div>
                 </div>
-                <div class="col-3 form-group">
-                    <button id="btnSearch" class="btn btn-primary">Search</button>
+            </div>
+            <div class="col-8 mx-auto demo">
+                <table class="table">
+                    <thead>
+                        <tr class="table-title">
+                            <th>Mã Sinh Viên</th>
+                            <th>Tên Sinh Viên</th>
+                            <th>Email</th>
+                            <th>Toán</th>
+                            <th>Lý</th>
+                            <th>Hóa</th>
+                            <th>TB 3 môn</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodySinhVien">
+
+                    </tbody>
+                </table>
+                <div class="amount">
+                    <span>Tổng số:</span>
+                    <span id="count"></span>
                 </div>
+                <div class="list-total">
+                    <div class="list_math">
+                        <ul class="statistic_list">
+                            <li class="statistic-item item-click">
+                                <button id="btnStatistic" type="button" class="btn btn-main">
+                                    Điểm toán
+                                </button>
+                                <ul class="statistic_list-none">
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                            onclick="StatisticMath8()">
+                                            Điểm toán trên 8
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                            onclick="StatisticMath65()">
+                                            Điểm toán trên 6.5
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                            onclick="StatisticMath4()">
+                                            Điểm toán trên 4
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="list_physic">
+                        <ul class="statistic_list">
+                            <li class="statistic-item item-click">
+                                <button id="btnStatistic" type="button" class="btn btn-main">
+                                    Điểm lý
+                                </button>
+                                <ul class="statistic_list-none">
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="StatisticPhysic8()">
+                                        Điểm lý trên 8
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="StatisticPhysic65()">
+                                        Điểm lý trên 6.5
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="StatisticPhysic4()">
+                                        Điểm lý trên 4
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="list_chemistry">
+                        <ul class="statistic_list">
+                            <li class="statistic-item item-click">
+                                <button id="btnStatistic" type="button" class="btn btn-main">
+                                    Điểm hóa
+                                </button>
+                                <ul class="statistic_list-none">
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="StatisticChemistry8()">
+                                            Điểm hóa trên 8
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="StatisticChemistry65()">
+                                            Điểm hóa trên 6.5
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="StatisticChemistry4()">
+                                            Điểm hóa trên 4
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="list_total">
+                        <ul class="statistic_list">
+                            <li class="statistic-item item-click">
+                                <button id="btnStatistic" type="button" class="btn btn-main">
+                                    Tổng điểm
+                                </button>
+                                <ul class="statistic_list-none">
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="total8()">
+                                            Tổng 3 môn trên 8
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="total65()">
+                                            Tổng 3 môn trên 6.5
+                                        </button>
+                                    </li>
+                                    <li class="statistic-item item-click">
+                                        <button id="btnStatistic" type="button" class="btn item-click"
+                                        onclick="total4()">
+                                            Tổng 3 môn trên 4
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-          </div>
-          <div class="col-8 mx-auto demo">
-            <table class="table">
-                <thead>
-                  <tr class="table-title">
-                    <th>Mã Sinh Viên</th>
-                    <th>Tên Sinh Viên</th>
-                    <th>Email</th>
-                    <th>Toán</th>
-                    <th>Lý</th>
-                    <th>Hóa</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="tbodySinhVien">
-                  
-                </tbody>
-            </table>
-          </div>
+            </div>
+            <div class="col-8 mx-auto demo">
+                <h2>Bảng thống kê điểm trung bình</h2>
+                <div class="row">
+                    <table class="table table-bordered" id="tbodyTotal">
+                        
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <!-- <p id="demo">Before</p>
@@ -153,8 +356,13 @@
             document.querySelector('#demo').innerHTML = num
         }
     </script> -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
     <script src="./lesson5.js"></script>
 </body>
+
 </html>
