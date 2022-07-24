@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="register">
@@ -15,42 +23,118 @@
             </div>
             <form class="register__form">
                 <div class="group">
+                    <div class="register__form-name" style="width: 50%;">
+                        <span>Name <span style="color: red;">*</span></span>
+                        <input type="text" id="name" class="register__name register__input" placeholder="Họ và tên"
+                            id="name" onchange="checkName()">
+                        <span id="bugname" style="color: red; display: none">Tên chỉ được chữ, số, _,- và nhỏ hơn 30 ký
+                            tự!!!!</span>
+                    </div>
+                    <div class="register__form-birthday" style="width: 50%;">
+                        <span>Năm Sinh <span style="color: red;"> *</span></span>
+                        <input type="date" class="register__birthday register__input" id="date" name="date">
+
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="register__form-phone" style="width: 50%;">
+                        <span style=" display: block;">Phone<span style="color: red;"> *</span></span>
+                        <input type="phone" id="phone" name="phone" class="register__phone register__input"
+                            onchange="checkPhone()">
+                        <span id="bugphone" style="color: red; display: none">Sai số điện thoại rồi nhập lại đi bạn
+                            ơi!!!!</span>
+                    </div>
+                    <div class="register__form-sex" style="width: 50%;">
+                        <span style=" display: block;">Giới tính<span style="color: red;"> *</span></span>
+                        <div class="sex" style="display: flex;">
+                            <div class="male" style="display: flex;">
+                                <span>Nam: </span>
+                                <input type="radio" id="check" name="check" checked="true" value="nam"
+                                    class="register__male check register__input" onclick="checkClick(this)">
+                            </div>
+                            <div class="female" style="display: flex;">
+                                <span>Nữ: </span>
+                                <input type="radio" id="check" name="check" value="nữ"
+                                    class="register__female check register__input" onclick="checkClick(this)">
+                            </div>
+                        </div>
+
+                        <span id="bugphone" style="color: red; display: none">Sai số điện thoại rồi nhập lại đi bạn
+                            ơi!!!!</span>
+                    </div>
+                </div>
+
+                <div class="group">
                     <div class="register__form-email" style="width: 50%;">
-                        <span style=" display: block;">Email</span>
-                        <input type="text" class="register__email register__input">
+                        <span style=" display: block;">Email<span style="color: red;"> *</span></span>
+                        <input type="text" class="register__email register__input" name="email" id="email"
+                            onkeyup="checkValue()" onchange="checkEmail()">
+                        <span id="bug" style="color: red; display: none">Lỗi email rồi kìa ba ơi</span>
                     </div>
                     <div class="register__form-password" style="width: 50%;">
-                        <span style=" display: block;">Password</span>
-                        <input type="password" class="register__password register__input">
+                        <span style=" display: block;">Password<span style="color: red;"> *</span></span>
+                        <input type="password" id="password" name="password" class="register__password register__input"
+                            onkeyup="checkValue()">
                     </div>
                 </div>
                 <div class="register__form-address">
-                    <span>Address</span>
-                    <input type="text" class="register__address register__input" placeholder="1234 Viet Nam">
+                    <span>Address 2 <span style="color: red;"> *</span></span>
+                    <input type="text" id="address" class="register__address register__input"
+                        placeholder="1234 Viet Nam">
                 </div>
                 <div class="register__form-address">
-                    <span>Address 2</span>
-                    <input type="text" class="register__address register__input" placeholder="1234 Viet Nam">
-                </div>
-                <div class="group">
-                    <div class="register__form-city" style="width: 50%;">
-                        <span>City</span>
-                        <input type="text" class="register__city register__input">
-                    </div>
-                    <div class="register__form-state" style="width: 50%;">
-                        <span>State</span>
-                        <input type="text" class="register__state register__input">
-                    </div>
+                    <span>Giới thiệu bản thân</span>
+                    <textarea name="info" id="info" cols="20" rows="7" class=" register__input"></textarea>
                 </div>
                 <div class="group" class="register__check">
-                    <input type="checkbox" class="checkbox">
-                    <span>Check me out</span>
+                    <input type="checkbox" class="checkbox" id="check" onclick="checkBox()">
+                    <span>Tôi đồng ý với điều khoản </span>
                 </div>
-                <button class="register__button">
+                <div class="group" class="register__check">
+                    <input type="checkbox" id="check_mail" class="checkbox_email" value="nhận mail tin tức">
+                    <span>Nhận mail tin tức</span>
+                </div>
+                <button class="register__button" disabled type="button" id="submit" onclick="createList()">
                     <span>Sign in</span>
                 </button>
             </form>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mx-auto demo">
+                <h3>Tài Khoản Đăng Kí</h3>
+                <table class="table">
+                    <thead>
+                        <tr class="table-title">
+                            <th>Họ và Tên</th>
+                            <th>Năm Sinh</th>
+                            <th>Giới Tính</th>
+                            <th>SDT</th>
+                            <th>Địa Chỉ</th>
+                            <th>Email</th>
+                            <th>Mật Khẩu</th>
+                            <th>Giới thiệu bản thân</th>
+                            <th>Nhận mail</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodySinhVien">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="./lesson5.js"></script>
+    <script src="index.js"></script>
 </body>
+
 </html>
